@@ -1,6 +1,6 @@
 ---
 title: "Markdown Page"
-permalink: /final.html
+permalink: /markdown/
 ---
 
 # OpenAI Playground Manual
