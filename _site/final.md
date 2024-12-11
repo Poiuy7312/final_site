@@ -1,5 +1,6 @@
 ---
 title: "Markdown Page"
+permalink: /final.html
 ---
 
 # OpenAI Playground Manual
@@ -129,5 +130,5 @@ console.log(completion.choices[0].message);
 
 > ChatGPT is free to use, though some features do cost money and they have subscription plans available. [pricing page](https://openai.com/chatgpt/pricing/).
 
-[go back](index.html)
+[go back](../)
 
