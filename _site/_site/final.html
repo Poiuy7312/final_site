@@ -1,0 +1,147 @@
+<h1 id="openai-playground-manual">OpenAI Playground Manual</h1>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<!---toc start-->
+
+<ul>
+  <li><a href="#openai-playground-manual">OpenAI Playground Manual</a>
+    <ul>
+      <li><a href="#table-of-contents">Table of Contents</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#guide">Guide</a>
+        <ul>
+          <li><a href="#tips">Tips</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#frequently-asked-questions">FAQ</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!---toc end-->
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The OpenAI API provides a simple interface to state-of-the-art AI models 
+for natural language processing, image generation, semantic search, and speech recognition. Follow this guide to learn how to generate human-like responses to natural language prompts, create vector embeddings for semantic search, and generate images from textual descriptions.</p>
+
+<h2 id="features">Features</h2>
+
+<h3 id="communicate-with-the-openai-servers-through-an-api">Communicate with the OpenAI servers through an API</h3>
+
+<p>This allows you to write programs that communicate with things like chatgpt and prompt responses from it. This makes it much easier to implement AI generation into some program and software.</p>
+
+<blockquote>
+  <p>⚠️ <em>AI can be wrong and can be a hindrance in some situations</em>: Be very careful here!</p>
+</blockquote>
+
+<h3 id="configure-responses-through-the-openai-website">Configure responses through the openai Website</h3>
+
+<p><img src="/writing/graphics/open-ai-playground-interface-gpt3.webp" alt="Playground Screenshot" /></p>
+
+<p>Through this you can control the amount of content it generates how random or deterministic it is and how likely it is to repeat itself when giving multiple prompts. You can change the model that it’s using like gpt 3.5 or gpt 4.0 depending on what you wan’t to use it for</p>
+
+<blockquote>
+  <p>💡<em>Tip: You might wan’t to use a more lightweight version of chatgpt if you aren’t planning on asking complicated problems i.e. gpt-4o-mini</em></p>
+</blockquote>
+
+<h2 id="guide">Guide</h2>
+
+<p>Before you do anything your going to need to install the openai dependencies for your chosen language</p>
+
+<h3 id="command">Command:</h3>
+
+<ul>
+  <li><strong>Python:</strong> <code class="language-plaintext highlighter-rouge">pip install openai</code></li>
+  <li><strong>Javascript</strong> <code class="language-plaintext highlighter-rouge">npm install openai</code></li>
+</ul>
+
+<p>After you do this your going to need to sign into your account and generate an <strong>API-KEY</strong>. Follow the steps below to do this</p>
+
+<h3 id="steps">Steps:</h3>
+
+<ul>
+  <li>Click on Account <strong>Settings</strong></li>
+  <li>Go to <strong>API-KEYS</strong></li>
+</ul>
+
+<p>Following this it should take you to a screen that looks like this.</p>
+
+<p><img src="/writing/graphics/Screenshot%202024-12-11%20120822.jpg" alt="API-key Screen shot" /></p>
+
+<ul>
+  <li>Click create new secret key</li>
+  <li>copy this key and then set as an environment variable this is dependent on your system
+    <ul>
+      <li><strong>Mac/Linux:</strong> <code class="language-plaintext highlighter-rouge">export OPENAI_API_KEY="your_api_key_here"</code></li>
+      <li><strong>Windows:</strong> <code class="language-plaintext highlighter-rouge">setx OPENAI_API_KEY "your_api_key_here"</code></li>
+      <li>You then can simply implement OpenAI into your code to communicate with the server.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="tips">Tips</h3>
+
+<ul>
+  <li>⚠️ <em>If your making an open source project do not put your API-key in the repo you could be charged for uses that aren’t you</em></li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<h4 id="python-example"><strong>Python Example:</strong></h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">()</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">gpt-4o-mini</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">system</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">You are a helpful assistant.</span><span class="sh">"</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Write a haiku about recursion in programming.</span><span class="sh">"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">completion</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="javascript-example"><strong>Javascript Example:</strong></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">OpenAI</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">openai</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">openai</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OpenAI</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">completion</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">openai</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+    <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">gpt-4o-mini</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">messages</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">system</span><span class="dl">"</span><span class="p">,</span> <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">You are a helpful assistant.</span><span class="dl">"</span> <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Write a haiku about recursion in programming.</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">completion</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="frequently-asked-questions">Frequently Asked Questions</h3>
+
+<p><strong>How can I contact support?</strong></p>
+
+<blockquote>
+  <p>If you already have an account, Login and click the help button. 
+If you don’t have an account or can’t login, got to <a href="https://help.openai.com/en/">help.openai.com</a></p>
+</blockquote>
+
+<p><strong>How much does it cost to use ChatGPT?</strong></p>
+
+<blockquote>
+  <p>ChatGPT is free to use, though some features do cost money and they have subscription plans available. <a href="https://openai.com/chatgpt/pricing/">pricing page</a>.</p>
+</blockquote>
+
+<p><a href="../">go back</a></p>
+

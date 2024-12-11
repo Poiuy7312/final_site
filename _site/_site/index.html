@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Playground Manual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <div class="container">
+            <h1>OpenAI Playground Manual</h1>
+
+            <div class="table-of-contents">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#guide">Guide</a>
+                        <ul>
+                            <li><a href="#tips">Tips</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h2 id="introduction">Introduction</h2>
+            <p>The OpenAI API provides a simple interface to state-of-the-art AI models for natural language processing,
+                image generation, semantic search, and speech recognition. Follow this guide to learn how to generate
+                human-like responses to natural language prompts, create vector embeddings for semantic search, and
+                generate
+                images from textual descriptions.</p>
+
+            <h2 id="features">Features</h2>
+            <h3>Communicate with the OpenAI servers through an API</h3>
+            <p>This allows you to write programs that communicate with things like ChatGPT and prompt responses from it.
+                This makes it much easier to implement AI generation into some program and software.</p>
+            <blockquote>
+                <p><strong>⚠️</strong> <em>AI can be wrong and can be a hindrance in some situations: Be very careful
+                        here!</em></p>
+            </blockquote>
+
+            <h3>Configure responses through the OpenAI Website</h3>
+            <img src="/writing/graphics/open-ai-playground-interface-gpt3.webp" alt="Playground Screenshot">
+
+            <p>Through this, you can control the amount of content it generates, how random or deterministic it is, and
+                how
+                likely it is to repeat itself when giving multiple prompts. You can change the model that it's using,
+                like
+                GPT 3.5 or GPT 4.0, depending on what you want to use it for.</p>
+            <blockquote>
+                <p><strong>💡</strong><em>Tip: You might want to use a more lightweight version of ChatGPT if you aren't
+                        planning on asking complicated problems i.e. GPT-4o-mini.</em></p>
+            </blockquote>
+
+            <h2 id="guide">Guide</h2>
+            <p>Before you do anything, you're going to need to install the OpenAI dependencies for your chosen language.
+            </p>
+
+            <h3>Command:</h3>
+            <ul>
+                <li><strong>Python:</strong> <code>pip install openai</code></li>
+                <li><strong>Javascript:</strong> <code>npm install openai</code></li>
+            </ul>
+
+            <p>After you do this, you're going to need to sign into your account and generate an
+                <strong>API-KEY</strong>.
+                Follow the steps below to do this:
+            </p>
+
+            <h3>Steps:</h3>
+            <ul>
+                <li>Click on Account <strong>Settings</strong></li>
+                <li>Go to <strong>API-KEYS</strong></li>
+            </ul>
+
+            <p>Following this, it should take you to a screen that looks like this:</p>
+            <img src="/writing/graphics/Screenshot%202024-12-11%20120822.jpg" alt="API-key Screenshot">
+
+            <ul>
+                <li>Click create new secret key</li>
+                <li>Copy this key and then set as an environment variable; this is dependent on your system:
+                    <ul>
+                        <li><strong>Mac/Linux:</strong> <code>export OPENAI_API_KEY="your_api_key_here"</code></li>
+                        <li><strong>Windows:</strong> <code>setx OPENAI_API_KEY "your_api_key_here"</code></li>
+                    </ul>
+                </li>
+                <li>You can then simply implement OpenAI into your code to communicate with the server.</li>
+            </ul>
+
+            <h3 id="tips">Tips</h3>
+            <p><strong>⚠️</strong> <em>If you're making an open-source project, do not put your API-key in the repo; you
+                    could be charged for uses that aren't yours.</em></p>
+
+            <h3 id="examples">Examples</h3>
+
+            <h4><strong>Python Example:</strong></h4>
+            <pre><code class="python">
+from openai import OpenAI
+client = OpenAI()
+
+completion = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {
+            "role": "user",
+            "content": "Write a haiku about recursion in programming."
+        }
+    ]
+)
+
+print(completion.choices[0].message)
+        </code></pre>
+
+            <h4><strong>Javascript Example:</strong></h4>
+            <pre><code class="javascript">
+import OpenAI from "openai";
+const openai = new OpenAI();
+
+const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+            role: "user",
+            content: "Write a haiku about recursion in programming.",
+        },
+    ],
+});
+
+console.log(completion.choices[0].message);
+        </code></pre>
+
+            <h3 id="faq">Frequently Asked Questions</h3>
+
+            <h4><strong>How can I contact support?</strong></h4>
+            <p>If you already have an account, log in and click the help button. If you don't have an account or can't
+                log
+                in, go to <a href="https://help.openai.com/en/" target="_blank">help.openai.com</a>.</p>
+
+            <h4><strong>How much does it cost to use ChatGPT?</strong></h4>
+            <p>ChatGPT is free to use, though some features do cost money, and they have subscription plans available.
+                Check
+                out the <a href="https://openai.com/chatgpt/pricing/" target="_blank">pricing page</a>.</p>
+            <a href="/final/">next page</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
